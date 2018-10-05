@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import waterfall.dao.RoleDAO;
 import waterfall.dao.UserDAO;
@@ -18,14 +19,19 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public void save(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userDAO.save(user);
 	}
 
 	@Override
 	public void update(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userDAO.update(user);
 	}
 
