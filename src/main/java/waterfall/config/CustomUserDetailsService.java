@@ -11,11 +11,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
 import waterfall.model.Role;
 import waterfall.model.User;
 import waterfall.service.UserService;
 
+@Component
 public class CustomUserDetailsService implements UserDetailsService{
 	
 	@Autowired

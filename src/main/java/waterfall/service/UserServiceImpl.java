@@ -6,12 +6,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import waterfall.dao.RoleDAO;
 import waterfall.dao.UserDAO;
 import waterfall.model.Role;
 import waterfall.model.User;
 
+@Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired

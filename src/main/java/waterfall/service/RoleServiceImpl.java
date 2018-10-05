@@ -3,10 +3,12 @@ package waterfall.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import waterfall.dao.RoleDAO;
 import waterfall.model.Role;
 
+@Service
 public class RoleServiceImpl implements RoleService {
 
 	@Autowired
