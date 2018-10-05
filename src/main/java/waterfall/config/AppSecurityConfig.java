@@ -27,6 +27,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/", "/playground").hasAnyRole("ROOT", "MODER", "USER")
+			.antMatchers("/users/**").hasAnyRole("ROOT")
 		.and()
 			.formLogin().loginPage("/login").loginProcessingUrl("/login")
 		.and()
