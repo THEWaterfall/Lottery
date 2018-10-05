@@ -1,4 +1,4 @@
-package waterfal.config;
+package waterfall.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

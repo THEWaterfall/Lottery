@@ -1,4 +1,4 @@
-package waterfal.config;
+package waterfall.config;
 
 import java.util.Properties;
 

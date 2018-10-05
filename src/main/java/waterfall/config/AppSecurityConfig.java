@@ -1,4 +1,4 @@
-package waterfal.config;
+package waterfall.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
