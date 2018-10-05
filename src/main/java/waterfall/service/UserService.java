@@ -11,5 +11,6 @@ public interface UserService {
 	public User findById(Integer id);
 	public List<User> findAll();
 	public User findByUsername(String username);
+	public boolean isUsernameUnique(User user);
 	public List<User> findTop();
 }

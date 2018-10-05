@@ -71,4 +71,15 @@ public class UserServiceImpl implements UserService {
 		return top;
 	}
 
+	@Override
+	public boolean isUsernameUnique(User user) {
+		User possibleUser = userDAO.findByUsername(user.getUsername());
+		
+		if((possibleUser == null) || (possibleUser != null && possibleUser.getId() == user.getId())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }
