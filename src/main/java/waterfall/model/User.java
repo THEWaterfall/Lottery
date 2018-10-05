@@ -23,7 +23,6 @@ import javax.validation.constraints.NotNull;
 @Table(name="user")
 public class User {
 	
-	@NotBlank
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
@@ -50,7 +49,6 @@ public class User {
 							     inverseJoinColumns = {@JoinColumn(name="role_id")})
 	private Set<Role> roles;
 	
-	@NotEmpty
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="user_profile_id")
 	private UserProfile profile;

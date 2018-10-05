@@ -100,7 +100,7 @@ public class LotteryController {
 			e.printStackTrace();
 			model.addAttribute("msg", "You can't buy a ticket. You don't have enough credits");
 			
-			return "redirect:/playground";
+			return "LotteryPlayGroundView";
 		}
 		
 		logger.info("{} added a ticket: {}", getUser().getUsername(), ticket);
@@ -110,6 +110,11 @@ public class LotteryController {
 	
 	@RequestMapping(value = {"/playground/play"}, method = RequestMethod.GET)
 	public String playLottery(ModelMap model) {
+		if(player.getTickets().size() == 0) {
+			model.addAttribute("msg", "You have no tickets to play");
+			return "LotteryPlayGroundView";
+		}
+		
 		User user = getUser();
 		user.setCredits(player.getCredits());
 		
@@ -133,10 +138,12 @@ public class LotteryController {
 				}
 			}
 			model.addAttribute("winningPrize", totalWinningPrize);
-			return "WinningLotteryView";
+			model.addAttribute("won", true);
 		} else {
-			return "LosingLotteryView";
+			model.addAttribute("lost", true);
 		}
+		
+		return "LotteryResultsView";
 	}
 	
 	@RequestMapping(value = {"/top"}, method = RequestMethod.GET)
@@ -145,6 +152,11 @@ public class LotteryController {
 		model.addAttribute("users", users);
 		
 		return "TopPlayersView";
+	}
+	
+	@ModelAttribute("username")
+	private String getUsername() {
+		return getUser().getUsername();
 	}
 	
 	private User getUser() {

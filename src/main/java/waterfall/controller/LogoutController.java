@@ -17,6 +17,6 @@ public class LogoutController {
 			SecurityContextHolder.getContext().setAuthentication(null);
 		}
 		
-		return "/login?logout";
+		return "redirect:/login?logout";
 	}
 }
