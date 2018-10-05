@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import waterfall.model.Role;
 import waterfall.model.User;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
