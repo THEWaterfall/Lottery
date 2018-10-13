@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import waterfall.model.Role;
 import waterfall.model.User;
+import waterfall.service.RoleService;
 import waterfall.service.UserService;
 
 @Controller
@@ -22,6 +24,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
 	
 	@RequestMapping(value = {"/users"}, method = RequestMethod.GET)
 	public String showUserList(ModelMap model) {
@@ -35,6 +40,7 @@ public class UserController {
 	public String showAddUser(ModelMap model) {
 		User user = new User();
 		model.addAttribute("user", user);
+		model.addAttribute("roles", getRoles());
 		
 		return "AddUserView";
 	}
@@ -87,4 +93,9 @@ public class UserController {
 		return "redirect:/users";
 	}
 	
+	public List<Role> getRoles() {
+		List<Role> roles = roleService.findAll();
+		
+		return roles;
+	}
 }
