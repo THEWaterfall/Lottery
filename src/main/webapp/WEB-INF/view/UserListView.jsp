@@ -12,6 +12,7 @@
 			<th>Email</th>
 			<th>Credits</th>
 			<th>Roles</th>
+			<th></th>
 			<sec:authorize access="hasRole('ROOT')">
 				<th></th>
 				<th></th>
@@ -30,7 +31,11 @@
 						<span>${role.type} </span>
 					</c:forEach>
 				</td>
-	
+				
+				<td>
+					<a href="<c:url value='/users/save/${user.id}'/>">Save</a>
+				</td>
+				
 				<sec:authorize access="hasRole('ROOT')">
 					<td>
 						<a href="<c:url value='/users/edit/${user.id}'/>">Edit</a>
