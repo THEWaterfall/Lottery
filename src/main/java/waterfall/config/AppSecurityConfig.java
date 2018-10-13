@@ -27,11 +27,13 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/", "/playground").hasAnyRole("ROOT", "MODER", "USER")
-			.antMatchers("/users/**").hasAnyRole("ROOT")
+			.antMatchers("/users/**").hasAnyRole("ROOT", "MODER")
 		.and()
 			.formLogin().loginPage("/login").loginProcessingUrl("/login")
 		.and()
-			.logout().logoutUrl("/logout");
+			.logout().logoutUrl("/logout")
+		.and()
+			.exceptionHandling().accessDeniedPage("/access_denied");
 	}
 	
 	@Bean
