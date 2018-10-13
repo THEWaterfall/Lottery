@@ -40,7 +40,6 @@ public class UserController {
 	public String showAddUser(ModelMap model) {
 		User user = new User();
 		model.addAttribute("user", user);
-		model.addAttribute("roles", getRoles());
 		
 		return "AddUserView";
 	}
@@ -65,7 +64,6 @@ public class UserController {
 	public String showEditUser(ModelMap model, @PathVariable int id) {
 		User user = userService.findById(id);
 		model.addAttribute("user", user);
-		
 		return "EditUserView";
 	}
 	
@@ -93,6 +91,7 @@ public class UserController {
 		return "redirect:/users";
 	}
 	
+	@ModelAttribute("roles")
 	public List<Role> getRoles() {
 		List<Role> roles = roleService.findAll();
 		

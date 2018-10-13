@@ -44,8 +44,6 @@ public class LotteryController {
 		if(machine == null)
 			machine = new Machine();
 		
-		model.addAttribute("player", player);
-		
 		return "LotteryPlayGroundView";
 	}
 	
@@ -157,6 +155,11 @@ public class LotteryController {
 	@ModelAttribute("username")
 	private String getUsername() {
 		return getUser().getUsername();
+	}
+	
+	@ModelAttribute("player")
+	private Player getPlayer() {
+		return this.player;
 	}
 	
 	private User getUser() {

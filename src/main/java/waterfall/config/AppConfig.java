@@ -17,9 +17,6 @@ public class AppConfig implements WebMvcConfigurer{
 	@Autowired
 	private StringToRoleConverter stringToRoleConverter;
 	
-	@Autowired
-	private StringToDateConverter stringToDateConverter;
-	
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -31,6 +28,5 @@ public class AppConfig implements WebMvcConfigurer{
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addConverter(stringToRoleConverter);
-		registry.addConverter(stringToDateConverter);
 	}
 }
