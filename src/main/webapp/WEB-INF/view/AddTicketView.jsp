@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 
@@ -23,5 +24,6 @@
 			<input type="submit" value="Save" />
 		</div>
 	</form:form>
+	<a href="<c:url value='/playground'/>">Cancel</a>
 </body>
 </html>

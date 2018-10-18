@@ -5,6 +5,8 @@
 <head>
 </head>
 <body>
+	<%@ include file="Header.jsp" %>
+
 	<table>
 		<tr>
 			<th>ID</th>
