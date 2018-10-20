@@ -29,12 +29,6 @@ public class UserController {
 	@Autowired
 	private RoleService roleService;
 	
-	@RequestMapping(value = {"/access_denied"}, method = RequestMethod.GET)
-	public String showAccessDenied() {
-		
-		return "AccessDeniedView";
-	}
-	
 	@RequestMapping(value = {"/users"}, method = RequestMethod.GET)
 	public String showUserList(ModelMap model) {
 		List<User> userList = userService.findAll();

@@ -2,6 +2,6 @@
 <head>
 </head>
 <body>
-	Access denied
+	${errorMsg}
 </body>
 </html>
