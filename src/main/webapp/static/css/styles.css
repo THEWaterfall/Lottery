@@ -107,6 +107,20 @@ body {
 	top: 85px;
 }
 
+.error-container {
+	width: 40%;
+	background-color: #EAE7E7;
+	border: 1px solid #ddd;
+  	border-radius: 4px;
+  	box-shadow: 0 0 20px black;
+	margin: 0 auto;  
+	padding: 20px;
+	position: absolute;
+	left:0;
+	right: 0;
+	top: 200px;
+}
+
 
 .login-container {
 	width: 30%;
