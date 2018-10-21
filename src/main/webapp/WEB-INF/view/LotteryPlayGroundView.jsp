@@ -17,7 +17,6 @@
 			<c:url var="moretickets" value='/playground/moretickets'/>
 			
 			<form:form action="${moretickets}" method="POST">
-			
 			<div class="row">
 				<div class="form-group ml-3">
 					<div class="input-group">
@@ -28,7 +27,6 @@
 					</div>
 				</div>
 			</div>
-			
 			</form:form>
 			
 			
@@ -39,7 +37,7 @@
 			</c:if>
 			
 			<div>
-				<div class="h5">Tickets:</div>
+				<div class="h5 mt-2">Tickets:</div>
 				<ul class="list-group">
 					<c:forEach var="ticket" items="${player.tickets}">
 						<li class="list-group-item">${ticket}</li>
