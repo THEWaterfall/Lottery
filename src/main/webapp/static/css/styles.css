@@ -1,0 +1,136 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+body {
+	background-color: #EAE7E7;
+
+}
+
+.container { 
+	position: relative;
+	max-width: 1200px;
+	border: 1px solid #ddd;
+  	border-radius: 4px;
+	min-height: 100vh;
+	margin: 0 auto;
+	background-color: #f5f5f5;
+}
+
+.container .row {
+	margin-top: 10px;
+}
+
+.header {
+	margin-top: 15px;
+}
+
+.header nav {
+	border-radius: 4px;
+}
+
+
+.addticket-container{
+	width: 60%;
+	background-color: #EAE7E7;
+	border: 1px solid #ddd;
+  	border-radius: 4px;
+  	box-shadow: 0 0 10px black;
+	margin: 0 auto;  
+	padding: 20px;
+	position: absolute;
+	left:0;
+	right: 0;
+	top: 25px;	
+}
+
+.add-container {
+	width: 60%;
+	background-color: #EAE7E7;
+	border: 1px solid #ddd;
+  	border-radius: 4px;
+  	box-shadow: 0 0 10px black;
+	margin: 0 auto;  
+	padding: 20px;
+	position: absolute;
+	left:0;
+	right: 0;
+	top: 25px;
+}
+
+.add-container select {
+	 overflow-y: hidden;
+}
+
+.playground-container {
+	width: 95%;
+	background-color: #EAE7E7;
+	border: 1px solid #ddd;
+  	border-radius: 4px;
+  	box-shadow: 0 0 10px black;
+	margin: 0 auto;  
+	padding: 20px;
+	position: absolute;
+	left:0;
+	right: 0;
+	top: 85px;
+}
+
+.table-container {
+	width: 95%;
+	background-color: #212529;
+	border: 1px solid #212529;
+  	border-radius: 4px;
+  	box-shadow: 0 0 10px black;
+	margin: 0 auto;  
+	padding: 20px;
+	position: absolute;
+	left:0;
+	right: 0;
+	top: 85px;
+}
+
+
+.login-container {
+	width: 30%;
+	background-color: #EAE7E7;
+	border: 1px solid #ddd;
+  	border-radius: 4px;
+  	box-shadow: 0 0 20px black;
+	margin: 0 auto;  
+	padding: 20px;
+	position: absolute;
+	left:0;
+	right: 0;
+	top: 200px;
+}
+
+.login-container div {
+	margin-top: 5px;
+}
+
+#no-tickets {
+	margin-top: 5px;
+}
+
+
+
+
+
