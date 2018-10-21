@@ -23,6 +23,9 @@ public class JsonController {
 	@RequestMapping(value = {"/users/save/{id}"}, method = RequestMethod.GET)
 	public String saveToJson(@PathVariable int id) {
 		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(com.fasterxml.jackson.databind.SerializationFeature.
+			    WRITE_DATES_AS_TIMESTAMPS , false);
+		
 		File file = new File("user"+id+".json");
 		User user = userService.findById(id);
 		
