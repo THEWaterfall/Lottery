@@ -17,6 +17,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import powerball.InvalidTicketException;
 import powerball.LackDepositException;
@@ -106,6 +107,21 @@ public class LotteryController {
 		return "redirect:/playground";
 	}
 	
+	@RequestMapping(value = {"/playground/moretickets"}, method = RequestMethod.POST)
+	public String addMoreTickets(@RequestParam("amount") int amount) {
+		for(int i = 0; i < amount; i++) {
+			Ticket ticket = new Ticket(true, true);
+			
+			try {
+				player.addTicket(ticket);
+			} catch (LackDepositException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return "redirect:/playground";
+	}
+	
 	@RequestMapping(value = {"/playground/play"}, method = RequestMethod.GET)
 	public String playLottery(ModelMap model) {
 		if(player.getTickets().size() == 0) {
@@ -124,9 +140,6 @@ public class LotteryController {
 		
 		Map<Player, List<Ticket>> winners = machine.draw();
 		
-		user.setCredits(player.getCredits());
-		userService.update(user);
-		
 		int totalWinningPrize = 0;
 		if(winners.size() > 0) {
 			for(Ticket ticket: winners.get(player)) {
@@ -140,6 +153,10 @@ public class LotteryController {
 		} else {
 			model.addAttribute("lost", true);
 		}
+		
+		player.setCredits(user.getCredits() + totalWinningPrize);
+		user.setCredits(user.getCredits() + totalWinningPrize);
+		userService.update(user);
 		
 		return "LotteryResultsView";
 	}
