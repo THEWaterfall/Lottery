@@ -9,8 +9,11 @@
 	<div class="container">
 		<%@ include file="Header.jsp" %>
 		<div class="playground-container">
-			<div class="h4">Credits: ${player.credits}</div>
-			
+			<div class="row">
+				<div class="col-3">
+					<div class="alert alert-success h5 mb-2">Credits: ${player.credits}</div>
+				</div>
+			</div>
 			<c:url var="moretickets" value='/playground/moretickets'/>
 			<form:form action="${moretickets}" method="POST">
 				<div class="form-group row">
