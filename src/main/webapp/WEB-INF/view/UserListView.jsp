@@ -5,13 +5,16 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/static/css/bootstrap.css'/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value='/static/css/styles.css'/>">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="<c:url value='/static/js/clickable-row.js'/>"></script>
 </head>
 <body>
 	
 
 	<div class="container">
 	<%@ include file="Header.jsp" %>
-		<div class="table-container">
+		<div class="usertable-container">
 			<table class="table table-hover table-dark">
 				<tr>
 					<th>ID</th>
@@ -26,8 +29,10 @@
 					</sec:authorize>
 				</tr>
 				
+				
 				<c:forEach var="user" items="${users}">
-					<tr>
+				<c:url var="profile" value="/users/profile/${user.id}"/>
+					<tr class="clickable-row" data-href="${profile}">
 						<td>${user.id}</td>
 						<td>${user.username}</td>
 						<td>${user.email}</td>

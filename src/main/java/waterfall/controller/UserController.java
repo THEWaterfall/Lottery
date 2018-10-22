@@ -92,6 +92,14 @@ public class UserController {
 		return "redirect:/users";
 	}
 	
+	@RequestMapping(value = {"/users/profile/{id}"}, method = RequestMethod.GET)
+	public String showUser(ModelMap model, @PathVariable int id) {
+		User user = userService.findById(id);
+		model.addAttribute("user", user);
+		
+		return "ShowUserView";
+	}
+	
 	@ModelAttribute("roles")
 	public List<Role> getRoles() {
 		List<Role> roles = roleService.findAll();
