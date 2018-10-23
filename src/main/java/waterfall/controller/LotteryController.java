@@ -40,7 +40,7 @@ public class LotteryController {
 	
 	@RequestMapping(value = {"/", "/playground"}, method = RequestMethod.GET)
 	public String showLotteryPlayGround(ModelMap model) {
-		if(player == null)
+		if(player == null || !player.getNickName().equals(getUser().getUsername()))
 			player = new Player(getUser().getUsername(), getUser().getCredits());
 		if(machine == null)
 			machine = new Machine();
@@ -50,6 +50,12 @@ public class LotteryController {
 	
 	@RequestMapping(value = {"/playground/ticket"}, method = RequestMethod.GET)
 	public String showAddTicket(ModelMap model) {
+		if (player.getCredits() < 2) {
+			model.addAttribute("msg", "You can't buy a ticket. You don't have enough credits");
+			
+			return "LotteryPlayGroundView";
+		}
+		
 		Ticket ticket = new Ticket();
 		model.addAttribute("ticket", ticket);
 		model.addAttribute("whiteBalls", getWhiteBalls());
@@ -97,9 +103,6 @@ public class LotteryController {
 			player.addTicket(ticket);
 		} catch (LackDepositException e) {
 			e.printStackTrace();
-			model.addAttribute("msg", "You can't buy a ticket. You don't have enough credits");
-			
-			return "LotteryPlayGroundView";
 		}
 		
 		logger.info("{} added a ticket: {}", getUser().getUsername(), ticket);
@@ -108,7 +111,13 @@ public class LotteryController {
 	}
 	
 	@RequestMapping(value = {"/playground/moretickets"}, method = RequestMethod.POST)
-	public String addMoreTickets(@RequestParam("amount") int amount) {
+	public String addMoreTickets(ModelMap model, @RequestParam("amount") int amount) {
+		if(player.getCredits() < amount*2) {
+			model.addAttribute("msg", "You can't buy this amount of tickets. You don't have enough credits");
+			
+			return "LotteryPlayGroundView";
+		}
+		
 		for(int i = 0; i < amount; i++) {
 			Ticket ticket = new Ticket(true, true);
 			
