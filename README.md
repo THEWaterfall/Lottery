@@ -2,6 +2,8 @@
 # Lottery web-app. Проектна робота
 _Виконано в навчальних цілях (в розробці)_
 
+Read this in other languages: [English](https://github.com/THEWaterfall/Lottery/blob/master/README.en-US.md), [Ukranian](https://github.com/THEWaterfall/Lottery/blob/master/README.md).
+
 ### Автор:
 
 Рябінін А.Д.
