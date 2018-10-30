@@ -20,7 +20,16 @@
   
   <dependencies>
   
-  <!-- Tomcat Database connection pool -->
+    <!-- Powerball Engine -->
+	<dependency>
+	    <groupId>waterfall</groupId>
+	    <artifactId>powerball</artifactId>
+	    <version>1.0</version>
+	    <scope>system</scope>
+	    <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/powerball.jar</systemPath>
+	</dependency>
+  
+    <!-- Tomcat Database connection pool -->
     <dependency>
 	    <groupId>org.apache.tomcat</groupId>
 	    <artifactId>tomcat-dbcp</artifactId>
