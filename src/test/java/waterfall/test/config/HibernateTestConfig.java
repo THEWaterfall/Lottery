@@ -1,4 +1,4 @@
-package waterfall.test;
+package waterfall.test.config;
 
 import java.util.Properties;
 
@@ -48,8 +48,6 @@ public class HibernateTestConfig {
 	private Properties hibernateProperties() {
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.dialect", environment.getProperty("hibernate.dialect"));
-		properties.setProperty("hibernate.show_sql", environment.getProperty("hibernate.show_sql"));
-		properties.setProperty("hibernate.format_sql", environment.getProperty("hibernate.format_sql"));
 		properties.setProperty("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
 		return properties;
 	}
