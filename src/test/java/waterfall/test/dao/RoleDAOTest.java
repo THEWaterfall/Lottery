@@ -39,8 +39,9 @@ public class RoleDAOTest {
 	}
 	
 	@After
-	public void finilize() {
-		roleDAO.remove(role);
+	public void fini() {
+		for(Role role: roleDAO.findAll())
+			roleDAO.remove(role);
 	}
 	
 	@Test

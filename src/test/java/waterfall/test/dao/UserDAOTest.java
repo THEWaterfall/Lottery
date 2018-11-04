@@ -49,8 +49,9 @@ public class UserDAOTest {
 	}
 	
 	@After 
-	public void finilize() {
-		userDAO.remove(user);
+	public void fini() {
+		for(User user: userDAO.findAll())
+			userDAO.remove(user);
 	}
 	
 	@Test
