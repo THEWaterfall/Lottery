@@ -52,6 +52,33 @@ public class User {
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="user_profile_id")
 	private UserProfile profile;
+	
+	public User() {
+		
+	}
+
+	public User(Integer id, @NotBlank String username, @NotBlank String password, @NotBlank String email,
+			@NotNull(message = "must not be empty") @Min(value = 0, message = "must be >= 0") Integer credits,
+			@NotEmpty Set<Role> roles, UserProfile profile) {
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.credits = credits;
+		this.roles = roles;
+		this.profile = profile;
+	}
+	
+	public User(@NotBlank String username, @NotBlank String password, @NotBlank String email,
+			@NotNull(message = "must not be empty") @Min(value = 0, message = "must be >= 0") Integer credits,
+			@NotEmpty Set<Role> roles, UserProfile profile) {
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.credits = credits;
+		this.roles = roles;
+		this.profile = profile;
+	}
 
 	public Integer getId() {
 		return id;

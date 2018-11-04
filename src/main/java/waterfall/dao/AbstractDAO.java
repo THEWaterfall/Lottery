@@ -23,6 +23,10 @@ public abstract class AbstractDAO<T> {
 		return sessionFactory.getCurrentSession();
 	}
 	
+	public void merge(T entity) {
+		getSession().merge(entity);
+	}
+	
 	public void save(T entity) {
 		getSession().save(entity);
 	}

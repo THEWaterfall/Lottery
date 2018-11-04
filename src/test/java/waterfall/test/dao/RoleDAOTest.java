@@ -34,8 +34,7 @@ public class RoleDAOTest {
 	
 	@Before
 	public void init() {
-		role = new Role();
-		role.setType("USER");
+		role = new Role("USER");
 		roleDAO.save(role);
 	}
 	
@@ -51,8 +50,7 @@ public class RoleDAOTest {
 	
 	@Test
 	public void findAllTest() {
-		Role role2 = new Role();
-		role2.setType("ROOT");
+		Role role2 = new Role("ROOT");
 		roleDAO.save(role2);
 		
 		List<Role> roleList = roleDAO.findAll();
@@ -63,8 +61,7 @@ public class RoleDAOTest {
 	
 	@Test
 	public void addTest() {
-		Role role2 = new Role();
-		role2.setType("ROOT");
+		Role role2 = new Role("ROOT");
 		roleDAO.save(role2);
 		
 		assertEquals(role2, roleDAO.findById(role2.getId()));

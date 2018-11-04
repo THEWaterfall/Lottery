@@ -5,6 +5,7 @@ import java.util.List;
 import waterfall.model.User;
 
 public interface UserDAO {
+	public void merge(User user);
 	public void save(User user);
 	public void update(User user);
 	public void remove(User user);

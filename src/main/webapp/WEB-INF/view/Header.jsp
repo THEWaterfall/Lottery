@@ -21,7 +21,7 @@
 						</li>
 						
 						<li>
-							<a class="nav-link" href="<c:url value='/top'/>">Top players</a>
+							<a class="nav-link" href="<c:url value='/top'/>">Ladder</a>
 						</li>
 					</ul>
 				

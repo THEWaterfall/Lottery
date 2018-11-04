@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import waterfall.dao.RoleDAO;
 import waterfall.dao.UserDAO;
 import waterfall.model.Role;
 import waterfall.model.User;
@@ -18,10 +17,7 @@ import waterfall.model.User;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
-	
-	@Autowired
-	private RoleDAO roleDAO;
-	
+
 	@Autowired
 	private UserDAO userDAO;
 	
@@ -36,8 +32,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void update(User user) {
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		userDAO.update(user);
+		if(userDAO.findById(user.getId()).getPassword() != user.getPassword()) 
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+		userDAO.merge(user);
 	}
 
 	@Override
@@ -72,11 +69,14 @@ public class UserServiceImpl implements UserService {
 		});
 		
 		List<User> top = new ArrayList<User>();
-		Role root = roleDAO.findById(1);
-		
+
 		for(User user: userList) {
-			if(!user.getRoles().contains(root))
+			for(Role role: user.getRoles()) {
+				if(role.getType().equals(("ROOT"))) {
+					break;
+				}
 				top.add(user);
+			}
 		}
 		
 		return top;

@@ -17,6 +17,19 @@ public class Role {
 	@Column(name="type")
 	private String type;
 	
+	public Role() {
+		
+	}
+	
+	public Role(Integer id, String type) {
+		this.id = id;
+		this.type = type;
+	}
+	
+	public Role (String type) {
+		this.type = type;
+	}
+
 	@Override
 	public String toString() {
 		return "Role [id=" + id + ", type=" + type + "]";

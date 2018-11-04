@@ -41,17 +41,10 @@ public class UserDAOTest {
 	
 	@Before
 	public void init() {
-	    Role role = new Role();
-	    role.setId(1);
-	    role.setType("User");
+	    Role role = new Role("USER");
 	    roleDAO.save(role);
 	    
-	    user = new User();
-	    user.setCredits(1000);
-	    user.setEmail("User@test.com");
-	    user.setUsername("User");
-	    user.setPassword("qwerty");
-	    user.setRoles(new HashSet<Role>(Arrays.asList(roleDAO.findById(1))));
+	    user = new User("User", "qwerty", "User@test.com", 1000, new HashSet<Role>(Arrays.asList(roleDAO.findById(1))), null);
 	    userDAO.save(user);
 	}
 	
@@ -72,29 +65,19 @@ public class UserDAOTest {
 	
 	@Test 
 	public void findAllTest() {
-		 User user2 = new User();
-		 user2.setCredits(1000);
-		 user2.setEmail("Antony@test.com");
-		 user2.setPassword("qwerty123");
-		 user2.setUsername("Antony");
-		 user2.setRoles(new HashSet<Role>(Arrays.asList(roleDAO.findById(1))));
-		 userDAO.save(user2);
+		User user2 = new User("Antony", "qwerty123", "Antony@test.com", 1000, new HashSet<Role>(Arrays.asList(roleDAO.findById(1))), null);
+		userDAO.save(user2);
 		 
-		 List<User> userList = userDAO.findAll();
+		List<User> userList = userDAO.findAll();
 		 
-		 assertEquals(user, userList.get(0));
-		 assertEquals(user2, userList.get(1));
-		 assertEquals(2, userList.size());
+		assertEquals(user, userList.get(0));
+		assertEquals(user2, userList.get(1));
+		assertEquals(2, userList.size());
 	}
 
 	@Test
 	public void saveUserTest() {
-	    User user2 = new User();
-	    user2.setCredits(1000);
-	    user2.setEmail("Antony@test.com");
-	    user2.setPassword("qwerty123");
-	    user2.setUsername("Antony");
-	    user2.setRoles(new HashSet<Role>(Arrays.asList(roleDAO.findById(1))));
+		User user2 = new User("Antony", "qwerty123", "Antony@test.com", 1000, new HashSet<Role>(Arrays.asList(roleDAO.findById(1))), null);
 	    userDAO.save(user2);
 
 	    assertEquals(user2, userDAO.findByUsername("Antony"));
