@@ -1,5 +1,7 @@
 package waterfall.controller;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -69,7 +71,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = {"/users/edit/{id}"}, method = RequestMethod.POST)
-	public String editUser(@Valid @ModelAttribute("user") User user, BindingResult result) {
+	public String editUser(ModelMap model, @Valid @ModelAttribute("user") User user, BindingResult result) {
 		if(!userService.isUsernameUnique(user)) {
 			FieldError fieldError = new FieldError("user", "username", "username is already taken");
 			result.addError(fieldError);
@@ -108,8 +110,14 @@ public class UserController {
 	}
 	
 	private User getUser() {
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		User user = userService.findByUsername(username);
+		User user;
+		
+		try {
+			String username = SecurityContextHolder.getContext().getAuthentication().getName();
+			user = userService.findByUsername(username);
+		} catch (NullPointerException e) {
+			user = new User("Default", "default", "Default@default.def", 0, new HashSet<Role>(Arrays.asList(new Role(10, "USER"))), null);
+		}
 		
 		return user;
 	}

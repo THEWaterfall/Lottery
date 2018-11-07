@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class LoginController {
-
 	
 	@RequestMapping(value = {"/login"}, method = RequestMethod.GET)
 	public String login() {
+
 		if(isAnonymous()) {
 			return "LoginView";
 		} else {
@@ -22,6 +22,10 @@ public class LoginController {
 
 	private boolean isAnonymous() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		if(auth == null) {
+			return true;
+		}
 		
 		return new AuthenticationTrustResolverImpl().isAnonymous(auth);
 	}

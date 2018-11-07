@@ -1,6 +1,8 @@
 package waterfall.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +26,7 @@ import powerball.LackDepositException;
 import powerball.Machine;
 import powerball.Player;
 import powerball.Ticket;
+import waterfall.model.Role;
 import waterfall.model.User;
 import waterfall.service.UserService;
 
@@ -35,8 +38,20 @@ public class LotteryController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(LotteryController.class);
 	
+	private User user;
 	private Player player;
 	private Machine machine;
+
+	public LotteryController() {
+		
+	}
+	
+	public LotteryController(User user, Player player, Machine machine, UserService userService) {
+		this.user = user;
+		this.player = player;
+		this.machine = machine;
+		this.userService = userService;
+	}
 	
 	@RequestMapping(value = {"/", "/playground"}, method = RequestMethod.GET)
 	public String showLotteryPlayGround(ModelMap model) {
@@ -138,7 +153,9 @@ public class LotteryController {
 			return "LotteryPlayGroundView";
 		}
 		
-		User user = getUser();
+		if(user == null)
+			user = getUser();
+		
 		user.setCredits(player.getCredits());
 		
 		try {
@@ -165,6 +182,7 @@ public class LotteryController {
 		
 		player.setCredits(user.getCredits() + totalWinningPrize);
 		user.setCredits(user.getCredits() + totalWinningPrize);
+		
 		userService.update(user);
 		
 		return "LotteryResultsView";
@@ -189,8 +207,14 @@ public class LotteryController {
 	}
 	
 	private User getUser() {
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		User user = userService.findByUsername(username);
+		User user;
+		
+		try {
+			String username = SecurityContextHolder.getContext().getAuthentication().getName();
+			user = userService.findByUsername(username);
+		} catch (NullPointerException e) {
+			user = new User("Default", "default", "Default@default.def", 0, new HashSet<Role>(Arrays.asList(new Role(3, "USER"))), null);
+		}
 		
 		return user;
 	}
