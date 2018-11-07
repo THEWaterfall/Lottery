@@ -52,6 +52,9 @@ public class UserDAOTest {
 	public void fini() {
 		for(User user: userDAO.findAll())
 			userDAO.remove(user);
+		
+		for(Role role: roleDAO.findAll())
+			roleDAO.remove(role);
 	}
 	
 	@Test

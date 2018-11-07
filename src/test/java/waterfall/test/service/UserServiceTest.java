@@ -54,8 +54,11 @@ public class UserServiceTest {
 	
 	@After 
 	public void fini() {
-		for(User user: userService.findAll()) 
+		for(User user: userService.findAll())
 			userService.remove(user);
+		
+		for(Role role: roleService.findAll())
+			roleService.remove(role);
 	}
 	
 	@Test
