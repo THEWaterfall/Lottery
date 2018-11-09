@@ -39,7 +39,7 @@ public class LoginTest {
 	    webDriver = new ChromeDriver(dc);
 		
 		//System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-		webDriver = new ChromeDriver();
+		//webDriver = new ChromeDriver();
 		loginPage = new LoginPage(webDriver);
 		lotteryPlaygroundPage = new LotteryPlaygroundPage(webDriver);
 		headerPage = new HeaderPage(webDriver);
