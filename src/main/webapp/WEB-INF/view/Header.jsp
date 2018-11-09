@@ -25,7 +25,7 @@
 						</li>
 					</ul>
 				
-				<div class="navbar-text">Hello, <b>${username}</b>. Welcome to the website! <a href="<c:url value='/logout'/>">Logout</a></div>
+				<div class="navbar-text">Hello, <b id="username">${username}</b>. Welcome to the website! <a href="<c:url value='/logout'/>">Logout</a></div>
 			</div>
 		</nav>
 	</div>

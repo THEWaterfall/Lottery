@@ -23,7 +23,7 @@
 				
 					<div class="input-group col-2">
 						<div class="input-group-prepend ">
-							<input class="btn btn-success" type="submit" value="Get more"/>
+							<input class="btn btn-success get-more" type="submit" value="Get more"/>
 						</div>
 						<input class="form-control" type="number" name="amount" min="1" required/>
 					</div>
@@ -44,7 +44,7 @@
 				<div class="h5 mt-2">Tickets:</div>
 				<ul class="list-group">
 					<c:forEach var="ticket" items="${player.tickets}">
-						<li class="list-group-item">${ticket}</li>
+						<li class="list-group-item ticket">${ticket}</li>
 					</c:forEach>
 				</ul>
 			</div>
