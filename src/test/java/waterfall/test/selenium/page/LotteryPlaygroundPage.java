@@ -49,6 +49,6 @@ public class LotteryPlaygroundPage {
 	}
 	
 	public int getTicketListSize() {
-		return tickets.size()
+		return tickets.size();
 	}
 }
