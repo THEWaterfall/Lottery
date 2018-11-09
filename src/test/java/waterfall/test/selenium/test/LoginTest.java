@@ -23,7 +23,7 @@ public class LoginTest {
 	
 	@BeforeClass
 	public static void init() {
-		System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
 		webDriver = new ChromeDriver();
 		loginPage = new LoginPage(webDriver);
 		lotteryPlaygroundPage = new LotteryPlaygroundPage(webDriver);
