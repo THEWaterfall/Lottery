@@ -1,8 +1,9 @@
 language: java
 dist: trusty
+install: true
 
-addons:
-  chrome: stable
+# addons:
+#   chrome: stable
 
 jdk:
   - oraclejdk8
@@ -30,3 +31,4 @@ after_success:
 cache:
   directories:
     - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
