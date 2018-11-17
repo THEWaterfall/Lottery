@@ -40,4 +40,12 @@ public class ErrorController {
 		return "error/ErrorView";
 	}
 	
+	@RequestMapping(value = {"/403"}, method = RequestMethod.GET)
+	public String error403(ModelMap model) {
+		String errorMsg = "Http Error Code: 404. Resource not found";
+		model.addAttribute("errorMsg", errorMsg);
+		
+		return "error/ErrorView";
+	}
+	
 }
