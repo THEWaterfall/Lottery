@@ -28,7 +28,7 @@
 	    <scope>system</scope>
 	    <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/powerball.jar</systemPath>
 	</dependency>
-  
+	
     <!-- Tomcat Database connection pool -->
     <dependency>
 	    <groupId>org.apache.tomcat</groupId>
@@ -184,6 +184,29 @@
 		<pluginManagement>
 			<plugins>
 				
+				<plugin>
+				    <groupId>org.eluder.coveralls</groupId>
+				    <artifactId>coveralls-maven-plugin</artifactId>
+				    <version>4.3.0</version>
+				    <configuration>
+				        <repoToken>lCVP9Z0WszjFa8AfAlDSFc9bnNcVNK998</repoToken>
+				    </configuration>
+				</plugin>
+				
+				<plugin>
+				    <groupId>org.jacoco</groupId>
+				    <artifactId>jacoco-maven-plugin</artifactId>
+				    <version>0.7.6.201602180812</version>
+				    <executions>
+				        <execution>
+				            <id>prepare-agent</id>
+				            <goals>
+				                <goal>prepare-agent</goal>
+				            </goals>
+				        </execution>
+				    </executions>
+				</plugin>
+					
 				<plugin>
 					<!-- Add Maven coordinates (GAV) for: maven-war-plugin -->
 				    <groupId>org.apache.maven.plugins</groupId>
