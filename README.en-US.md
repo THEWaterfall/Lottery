@@ -1,5 +1,5 @@
 
-# Lottery web-app. Project work [![Build Status](https://travis-ci.com/THEWaterfall/Lottery.svg?branch=master)](https://travis-ci.com/THEWaterfall/Lottery)
+# Lottery web-app. Project work [![Build Status](https://travis-ci.com/THEWaterfall/Lottery.svg?branch=master)](https://travis-ci.com/THEWaterfall/Lottery) [![Coverage Status](https://coveralls.io/repos/github/THEWaterfall/Lottery/badge.png?branch=master)](https://coveralls.io/github/THEWaterfall/Lottery?branch=master)
 _Made for the learning purposes (in progress)_
 
 Read this in other languages: [English](https://github.com/THEWaterfall/Lottery/blob/master/README.en-US.md), [Ukranian](https://github.com/THEWaterfall/Lottery/blob/master/README.md).
