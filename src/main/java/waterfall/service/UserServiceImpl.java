@@ -75,8 +75,8 @@ public class UserServiceImpl implements UserService {
 				if(role.getType().equals(("ROOT"))) {
 					break;
 				}
-				top.add(user);
 			}
+			top.add(user);
 		}
 		
 		return top;
