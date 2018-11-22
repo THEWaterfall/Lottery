@@ -26,3 +26,11 @@ _Виконано в навчальних цілях (в розробці)_
 * Jackson JSON
 * DAO layer
 * Service layer
+
+Login page                 |  Login page after logged out |  Login page with error |         
+:-------------------------:|:-------------------------:|:-------------------------:
+![](https://i.imgur.com/5OBpAHY.png)  | ![](https://i.imgur.com/QinXJvY.png) | ![](https://i.imgur.com/lUt3iBh.png)
+
+Lottery playground page    |  Get ticket page          |  Ladder page             |         
+:-------------------------:|:-------------------------:|:-------------------------:
+![](https://i.imgur.com/sWKoceZ.png)  | ![](https://i.imgur.com/SVRD25Q.png) | ![](https://i.imgur.com/wCbHlz5.png)
