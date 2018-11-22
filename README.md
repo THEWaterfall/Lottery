@@ -27,10 +27,30 @@ _Виконано в навчальних цілях (в розробці)_
 * DAO layer
 * Service layer
 
-Login page                 |  Login page after logged out |  Login page with error |         
-:-------------------------:|:-------------------------:|:-------------------------:
-![](https://i.imgur.com/5OBpAHY.png)  | ![](https://i.imgur.com/QinXJvY.png) | ![](https://i.imgur.com/lUt3iBh.png)
 
-Lottery playground page    |  Get ticket page          |  Ladder page             |         
+### Зображення:
+
+Login сторінка                 |  Login сторінка після виходу |  Login сторінка із помилкою |         
 :-------------------------:|:-------------------------:|:-------------------------:
-![](https://i.imgur.com/sWKoceZ.png)  | ![](https://i.imgur.com/SVRD25Q.png) | ![](https://i.imgur.com/wCbHlz5.png)
+![](https://github.com/THEWaterfall/Lottery/blob/master/img_examples/login.png)  | ![](https://github.com/THEWaterfall/Lottery/blob/master/img_examples/login_logged.png) | ![](https://github.com/THEWaterfall/Lottery/blob/master/img_examples/login_error.png)
+
+Lottery playground сторінка  |    
+:-------------------------:
+![](https://github.com/THEWaterfall/Lottery/blob/master/img_examples/playground.png)
+
+ Get ticket сторінка         |  Ladder сторінка             |         
+:-----------------------:|:-------------------------:
+![](https://github.com/THEWaterfall/Lottery/blob/master/img_examples/get_ticket.png) | ![](https://github.com/THEWaterfall/Lottery/blob/master/img_examples/ladder.png)
+
+ 
+ Admin panel сторінка         |     
+:-------------------------:
+ ![](https://github.com/THEWaterfall/Lottery/blob/master/img_examples/adminpanel.png) 
+
+ Add user сторінка            |  Add user сторінка із помилкою |     
+:-------------------------:|:-------------------------:
+ ![](https://github.com/THEWaterfall/Lottery/blob/master/img_examples/adduser.png) | ![](https://github.com/THEWaterfall/Lottery/blob/master/img_examples/adduser_error.png) 
+ 
+  Edit user сторінка         |  Show user сторінка |     
+:-------------------------:|:-------------------------:
+ ![](https://github.com/THEWaterfall/Lottery/blob/master/img_examples/edituser.png) | ![](https://github.com/THEWaterfall/Lottery/blob/master/img_examples/showuser.png) 
