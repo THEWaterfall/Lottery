@@ -69,8 +69,8 @@ public class UserServiceTest {
 		User user3 = new User("User3", "qwerty3", "User3@test.com", 5000, new HashSet<Role>(Arrays.asList(userRole)), null);
 		userService.save(user3);
 		
-		assertEquals("User3", userService.findTop().get(0).getUsername());
-		assertEquals(2, userService.findTop().size());
+		assertEquals("User2", userService.findTop().get(0).getUsername());
+		assertEquals(3, userService.findTop().size());
 	}
 	
 	@Test

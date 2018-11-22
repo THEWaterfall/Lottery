@@ -52,7 +52,6 @@ public class LotteryControllerTest {
 	private Role userRole;
 	private User user;
 	
-	
 	@Before() 
 	public void init() {
 		userRole = new Role("USER");

@@ -38,7 +38,6 @@ public class RoleServiceTest {
 
 	@After
 	public void fini() {
-		System.out.println(roleService.findAll());
 		for(Role role: roleService.findAll())
 			roleService.remove(role);
 	}

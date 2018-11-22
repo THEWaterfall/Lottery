@@ -207,13 +207,13 @@ public class LotteryController {
 	}
 	
 	private User getUser() {
-		User user;
-		
-		try {
-			String username = SecurityContextHolder.getContext().getAuthentication().getName();
-			user = userService.findByUsername(username);
-		} catch (NullPointerException e) {
-			user = new User("Default", "default", "Default@default.def", 0, new HashSet<Role>(Arrays.asList(new Role(3, "USER"))), null);
+		if(user == null) {
+			try {
+				String username = SecurityContextHolder.getContext().getAuthentication().getName();
+				user = userService.findByUsername(username);
+			} catch (NullPointerException e) {
+				user = new User("Default", "default", "Default@default.def", 0, new HashSet<Role>(Arrays.asList(new Role(3, "USER"))), null);
+			}
 		}
 		
 		return user;

@@ -197,7 +197,7 @@
 				<executions>
 					<execution>
 						<id>prepare-agent</id>
-				            <goals>
+				        	<goals>
 				                <goal>prepare-agent</goal>
 				            </goals>
 				    </execution>
