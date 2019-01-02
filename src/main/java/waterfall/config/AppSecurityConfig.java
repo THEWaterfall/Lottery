@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -29,7 +30,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/", "/playground").hasAnyRole("ROOT", "MODER", "USER")
 			.antMatchers("/users/**").hasAnyRole("ROOT", "MODER")
 		.and()
-			.formLogin().loginPage("/login").loginProcessingUrl("/login")
+			.formLogin().loginPage("/login").loginProcessingUrl("/login").failureHandler(customAuthenticationFailureHandler())
 		.and()
 			.logout().logoutUrl("/logout");
 	}
@@ -45,5 +46,10 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 		authProvider.setPasswordEncoder(passwordEncoder());
 		authProvider.setUserDetailsService(userDetailsService);
 		return authProvider;
+	}
+	
+	@Bean
+	public AuthenticationFailureHandler customAuthenticationFailureHandler() {
+		return new CustomAuthenticationFailureHandler();
 	}
 }

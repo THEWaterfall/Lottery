@@ -35,31 +35,10 @@
 					</div>
 				</div>
 				
-				<div class="form-group row">
-					<label class="col-md-2 col-form-label">Credits</label>
 				
-					<div class="col-md-10">
-						<div class="input-group">
-							<form:input class="form-control" type="number" min="0" path="credits"/>
-							<span class="input-group-append input-group-text">
-								<i class="fas fa-money-check-alt"></i>
-							</span>
-						</div>
-					<form:errors class="text-danger" path="credits"/>
-					
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-md-2 col-form-label">Roles</label>
-					<div class="col-md-10">
-						<form:select class="form-control" path="roles" items="${roles}" itemValue="id" itemLabel="type" size="3"/>
-						<form:errors class="text-danger" path="roles"/>
-					</div>
-				</div>
-				
-				<form:input type="hidden" path="enabled" value="true"/>
-				
+				<form:input type="hidden" path="credits" value="0"/>
+				<form:input type="hidden" path="roles" value="4"/>
+
 				<hr/>
 				<div class="form-group row">
 					<label class="col-md-2 col-form-label">Firstname</label>
@@ -103,7 +82,7 @@
 				
 				<div class="form-group row">
 					<div class="col-md-2">
-						<input class="btn btn-block btn-success" type="submit" value="Add" />
+						<input class="btn btn-block btn-success" type="submit" value="Register" />
 					</div>
 				</div>
 				

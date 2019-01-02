@@ -10,7 +10,13 @@
 	<div class="container">
 		<div class="login-container">
 			<c:if test="${param.error != null}">
-				<div class="alert alert-danger">Wrong password or username</div>
+				<!--<div class="alert alert-danger">Wrong password or username</div> -->
+				<div class="alert alert-danger">
+					<c:out value="${SPRING_SECURITY_LAST_EXCEPTION}"/>
+					<c:if test="${SPRING_SECURITY_LAST_EXCEPTION == 'User account is disabled'}">
+						<a href="<c:url value='/register/resend'/>"> [Resend]</a>
+					</c:if>
+				</div>
 			</c:if>
 
 			<c:if test="${param.logout != null}">
@@ -36,6 +42,9 @@
 
 				<div class="form-group">
 					<input class="btn btn-block btn-primary" name="loginBtn" type="submit" value="Login" />
+				</div>
+				<div class="form-group">
+					<a class="btn btn-block btn-primary" href="<c:url value="/register" />">Register</a>
 				</div>
 			</form:form>
 		</div>

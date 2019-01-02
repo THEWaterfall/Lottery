@@ -35,8 +35,9 @@ public class UserServiceImpl implements UserService {
 		if(userDAO.findById(user.getId()).getPassword() != user.getPassword()) 
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userDAO.merge(user);
+//		userDAO.update(user);
 	}
-
+	
 	@Override
 	public void remove(User user) {
 		userDAO.remove(user);
@@ -55,6 +56,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findByUsername(String username) {
 		return userDAO.findByUsername(username);
+	}
+	
+	@Override
+	public User findByEmail(String username) {
+		return userDAO.findByEmail(username);
 	}
 
 	@Override
@@ -93,4 +99,15 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public boolean isEmailUnique(User user) {
+		User possibleUser = userDAO.findByEmail(user.getEmail());
+		
+		if((possibleUser == null) || (possibleUser != null && possibleUser.getId() == user.getId())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }

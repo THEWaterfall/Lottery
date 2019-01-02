@@ -56,6 +56,8 @@
 					</div>
 				</div>
 				
+				<form:input type="hidden" path="enabled" value="true"/>
+				
 				<div class="form-group row">
 					<label class="col-md-2 col-form-label">Firstname</label>
 					<div class="col-md-10">

@@ -38,18 +38,34 @@ public class LotteryController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(LotteryController.class);
 	
-	private User user;
-	private Player player;
-	private Machine machine;
+	private static User user;
+	private static Player player;
+	private static Machine machine;
+	
+	public static Machine getMachine() {
+		return machine;
+	}
+
+	public static void setMachine(Machine machine) {
+		LotteryController.machine = machine;
+	}
+
+	public static void setUser(User user) {
+		LotteryController.user = user;
+	}
+
+	public static void setPlayer(Player player) {
+		LotteryController.player = player;
+	}
 
 	public LotteryController() {
 		
 	}
 	
 	public LotteryController(User user, Player player, Machine machine, UserService userService) {
-		this.user = user;
-		this.player = player;
-		this.machine = machine;
+		LotteryController.user = user;
+		LotteryController.player = player;
+		LotteryController.machine = machine;
 		this.userService = userService;
 	}
 	
@@ -203,7 +219,7 @@ public class LotteryController {
 	
 	@ModelAttribute("player")
 	private Player getPlayer() {
-		return this.player;
+		return player;
 	}
 	
 	private User getUser() {
@@ -211,6 +227,7 @@ public class LotteryController {
 			try {
 				String username = SecurityContextHolder.getContext().getAuthentication().getName();
 				user = userService.findByUsername(username);
+	
 			} catch (NullPointerException e) {
 				user = new User("Default", "default", "Default@default.def", 0, new HashSet<Role>(Arrays.asList(new Role(3, "USER"))), null);
 			}

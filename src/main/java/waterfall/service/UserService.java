@@ -12,5 +12,7 @@ public interface UserService {
 	public List<User> findAll();
 	public User findByUsername(String username);
 	public boolean isUsernameUnique(User user);
+	public boolean isEmailUnique(User user);
 	public List<User> findTop();
+	public User findByEmail(String username);
 }

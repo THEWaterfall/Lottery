@@ -20,4 +20,13 @@ public class UserDAOImpl extends AbstractDAO<User> implements UserDAO {
 		
 		return user;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public User findByEmail(String email) {
+		Query<User> query = getSession().createQuery("FROM User WHERE email=:email").setParameter("email", email);
+		User user = query.uniqueResult();
+		
+		return user;
+	}
 }

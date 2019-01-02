@@ -49,12 +49,15 @@ public class User {
 							     inverseJoinColumns = {@JoinColumn(name="role_id")})
 	private Set<Role> roles;
 	
+	@Column(name="enabled")
+	private boolean enabled;
+	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="user_profile_id")
 	private UserProfile profile;
 	
 	public User() {
-		
+		enabled = false;
 	}
 
 	public User(Integer id, @NotBlank String username, @NotBlank String password, @NotBlank String email,
@@ -67,6 +70,7 @@ public class User {
 		this.credits = credits;
 		this.roles = roles;
 		this.profile = profile;
+		this.enabled = false;
 	}
 	
 	public User(@NotBlank String username, @NotBlank String password, @NotBlank String email,
@@ -78,6 +82,7 @@ public class User {
 		this.credits = credits;
 		this.roles = roles;
 		this.profile = profile;
+		this.enabled = false;
 	}
 
 	public Integer getId() {
@@ -136,6 +141,14 @@ public class User {
 		this.profile = profile;
 	}
 	
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override 
 	public int hashCode() {
 		final int constant = 11;
@@ -164,8 +177,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=encrypted, email=" + email
-				+ ", credits=" + credits + ", roles=" + roles + ", profile=" + profile + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", credits=" + credits + ", roles=" + roles + ", enabled=" + enabled + ", profile=" + profile + "]";
 	}
-	
+
 }
