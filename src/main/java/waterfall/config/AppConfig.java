@@ -65,11 +65,4 @@ public class AppConfig implements WebMvcConfigurer{
         
         return mailSender;
     }
-	
-//	@Bean
-//	public ThreadPoolTaskScheduler taskScheduler(){
-//	    ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
-//	    taskScheduler.setPoolSize(2);
-//	    return taskScheduler;
-//	}
 }
