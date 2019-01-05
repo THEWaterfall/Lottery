@@ -15,4 +15,6 @@ public interface UserService {
 	public boolean isEmailUnique(User user);
 	public List<User> findTop();
 	public User findByEmail(String username);
+	public void removeAllDisabled();
+	public void removeAll(List<User> userList);
 }

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
+@EnableScheduling
 @EnableWebMvc
 @ComponentScan("waterfall")
 public class AppConfig implements WebMvcConfigurer{
@@ -63,4 +65,11 @@ public class AppConfig implements WebMvcConfigurer{
         
         return mailSender;
     }
+	
+//	@Bean
+//	public ThreadPoolTaskScheduler taskScheduler(){
+//	    ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
+//	    taskScheduler.setPoolSize(2);
+//	    return taskScheduler;
+//	}
 }

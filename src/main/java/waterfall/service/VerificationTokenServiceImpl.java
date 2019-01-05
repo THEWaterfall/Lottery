@@ -1,5 +1,7 @@
 package waterfall.service;
 
+import java.util.Date;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,11 @@ public class VerificationTokenServiceImpl implements VerificationTokenService {
 	public User findTokenOwner(String token) {
 		VerificationToken verificationToken = findByToken(token);
 		return verificationToken.getUser();
+	}
+
+	@Override
+	public void removeExpiredSince(Date since) {
+		tokenDAO.removeExpiredSince(since);
 	}
 
 }

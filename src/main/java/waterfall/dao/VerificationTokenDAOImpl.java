@@ -1,5 +1,7 @@
 package waterfall.dao;
 
+import java.util.Date;
+
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
@@ -30,5 +32,13 @@ public class VerificationTokenDAOImpl extends AbstractDAO<VerificationToken> imp
 		
 		VerificationToken verificationToken = query.uniqueResult();
 		return verificationToken;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void removeExpiredSince(Date since) {
+		Query<VerificationToken> query = getSession().createQuery("DELETE FROM VerificationToken WHERE expiryDate < :date")
+											.setParameter("date", since);
+		query.executeUpdate();
 	}
 }

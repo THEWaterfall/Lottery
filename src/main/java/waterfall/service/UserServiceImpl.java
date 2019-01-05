@@ -110,4 +110,17 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
+	@Override
+	public void removeAll(List<User> userList) {
+			for(User user: userList)
+				userDAO.remove(user);
+	}
+	
+	@Override
+	public void removeAllDisabled() {
+		removeAll(userDAO.findAllDisabled());
+	}
+	
+	
+	
 }

@@ -1,5 +1,6 @@
 package waterfall.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import waterfall.model.User;
@@ -12,4 +13,5 @@ public interface VerificationTokenDAO {
 	public List<VerificationToken> findAll();	
 	public VerificationToken findByToken(String token);
 	public VerificationToken findByUser(User user);
+	public void removeExpiredSince(Date since);
 }

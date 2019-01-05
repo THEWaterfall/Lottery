@@ -1,5 +1,7 @@
 package waterfall.dao;
 
+import java.util.List;
+
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
@@ -28,5 +30,15 @@ public class UserDAOImpl extends AbstractDAO<User> implements UserDAO {
 		User user = query.uniqueResult();
 		
 		return user;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> findAllDisabled() {
+		Query<User> query = getSession().createQuery("SELECT u FROM User u LEFT JOIN VerificationToken vt ON u.id = vt.user.id WHERE vt.id IS NULL AND u.enabled = 0");
+		List<User> users = query.list();
+	
+		return users;
+		
 	}
 }

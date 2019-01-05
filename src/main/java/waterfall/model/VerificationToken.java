@@ -30,7 +30,7 @@ public class VerificationToken {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	public static final int EXPIRATION = 60 * 24;
+	public static final int EXPIRATION = 30;
 
 	public VerificationToken() {
 		this.expiryDate = calculateExpiryDate(EXPIRATION);
@@ -78,8 +78,8 @@ public class VerificationToken {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(new Date().getTime());
 		calendar.add(Calendar.MINUTE, expiryTimeInMinutes);
-		//return calendar.getTime() or return new Date(calendar.getTimeInMillis())
-		return new Date(calendar.getTime().getTime());
+		
+		return calendar.getTime();
 	}
 	
 	public void refresh(String token) {
