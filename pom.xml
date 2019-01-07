@@ -15,7 +15,7 @@
     <springframework.version>5.0.8.RELEASE</springframework.version>
     <springmvc.version>5.0.8.RELEASE</springmvc.version>
     <springsecurity.version>5.0.7.RELEASE</springsecurity.version>
-    <jackson.version>2.9.6</jackson.version>
+    <jackson.version>2.9.8</jackson.version>
     <slf4logback.version>1.0.13</slf4logback.version>
   </properties>
   
