@@ -32,10 +32,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void update(User user) {
-		if(userDAO.findById(user.getId()).getPassword() != user.getPassword()) 
+		if(!userDAO.findById(user.getId()).getPassword().equals(user.getPassword())) 
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
+		
 		userDAO.merge(user);
-//		userDAO.update(user);
 	}
 	
 	@Override
@@ -120,7 +120,4 @@ public class UserServiceImpl implements UserService {
 	public void removeAllDisabled() {
 		removeAll(userDAO.findAllDisabled());
 	}
-	
-	
-	
 }
