@@ -11,13 +11,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 @Configuration
 @EnableWebSecurity
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	
+//	@Autowired
+//	private DataSource dataSource;
+	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private PersistentTokenRepository persistentTokenRepository;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -31,6 +39,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/users/**").hasAnyRole("ROOT", "MODER")
 		.and()
 			.formLogin().loginPage("/login").loginProcessingUrl("/login").failureHandler(customAuthenticationFailureHandler())
+		.and()
+			.rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository)
 		.and()
 			.logout().logoutUrl("/logout");
 	}
@@ -52,4 +62,12 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthenticationFailureHandler customAuthenticationFailureHandler() {
 		return new CustomAuthenticationFailureHandler();
 	}
+	
+	@Bean
+	public PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices() {
+		PersistentTokenBasedRememberMeServices tokenBasedService = new PersistentTokenBasedRememberMeServices(
+                "remember-me", userDetailsService, persistentTokenRepository);
+        return tokenBasedService;
+	}
+	
 }

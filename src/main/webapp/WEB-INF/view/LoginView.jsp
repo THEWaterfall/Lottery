@@ -39,6 +39,13 @@
 						<input class="form-control input-sm" type="password" name="password" placeholder="Enter password" required />
 					</div>
 				</div>
+				
+				<div class="form-grpup">
+					<div class="form-check">
+					  <input class="form-check-input" name="remember-me" type="checkbox">
+					  <label class="form-check-label">Remember me</label>
+					</div>
+				</div>
 
 				<div class="form-group">
 					<input class="btn btn-block btn-primary" name="loginBtn" type="submit" value="Login" />
