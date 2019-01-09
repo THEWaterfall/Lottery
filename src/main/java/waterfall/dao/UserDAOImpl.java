@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import waterfall.model.User;
 
 @Repository
-public class UserDAOImpl extends AbstractDAO<User> implements UserDAO {
+public class UserDAOImpl extends AbstractDAO<Integer, User> implements UserDAO {
 
 	public UserDAOImpl() {
 		setEntityClass(User.class);

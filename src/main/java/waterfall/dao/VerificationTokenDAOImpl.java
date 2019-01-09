@@ -9,7 +9,7 @@ import waterfall.model.User;
 import waterfall.model.VerificationToken;
 
 @Repository
-public class VerificationTokenDAOImpl extends AbstractDAO<VerificationToken> implements VerificationTokenDAO {
+public class VerificationTokenDAOImpl extends AbstractDAO<Integer, VerificationToken> implements VerificationTokenDAO {
 
 	public VerificationTokenDAOImpl() {
 		setEntityClass(VerificationToken.class);

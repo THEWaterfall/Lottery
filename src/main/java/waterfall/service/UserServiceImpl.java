@@ -77,12 +77,16 @@ public class UserServiceImpl implements UserService {
 		List<User> top = new ArrayList<User>();
 
 		for(User user: userList) {
+			boolean isRoot = false;
 			for(Role role: user.getRoles()) {
 				if(role.getType().equals(("ROOT"))) {
+					isRoot = true;
 					break;
 				}
 			}
-			top.add(user);
+			
+			if(!isRoot)
+				top.add(user);
 		}
 		
 		return top;

@@ -1,5 +1,6 @@
 package waterfall.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -8,7 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-public abstract class AbstractDAO<T> {
+public abstract class AbstractDAO<PK extends Serializable, T> {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -39,7 +40,7 @@ public abstract class AbstractDAO<T> {
 		getSession().remove(entity);
 	}
 	
-	public T findById(Integer id) {
+	public T findById(PK id) {
 		return getSession().get(entityClass, id);
 	}
 	

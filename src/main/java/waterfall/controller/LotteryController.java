@@ -38,41 +38,27 @@ public class LotteryController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(LotteryController.class);
 	
-	private static User user;
-	private static Player player;
-	private static Machine machine;
-	
-	public static Machine getMachine() {
-		return machine;
-	}
-
-	public static void setMachine(Machine machine) {
-		LotteryController.machine = machine;
-	}
-
-	public static void setUser(User user) {
-		LotteryController.user = user;
-	}
-
-	public static void setPlayer(Player player) {
-		LotteryController.player = player;
-	}
+	private User user;
+	private Player player;
+	private Machine machine;
 
 	public LotteryController() {
 		
 	}
 	
 	public LotteryController(User user, Player player, Machine machine, UserService userService) {
-		LotteryController.user = user;
-		LotteryController.player = player;
-		LotteryController.machine = machine;
+		this.user = user;
+		this.player = player;
+		this.machine = machine;
 		this.userService = userService;
 	}
 	
 	@RequestMapping(value = {"/", "/playground"}, method = RequestMethod.GET)
 	public String showLotteryPlayGround(ModelMap model) {
-		if(player == null || !player.getNickName().equals(getUser().getUsername()))
+		if(player == null || !player.getNickName().equals(getUser().getUsername())) {
 			player = new Player(getUser().getUsername(), getUser().getCredits());
+			user = null;
+		}
 		if(machine == null)
 			machine = new Machine();
 		
@@ -223,16 +209,12 @@ public class LotteryController {
 	}
 	
 	private User getUser() {
-		if(user == null) {
-			try {
-				String username = SecurityContextHolder.getContext().getAuthentication().getName();
-				user = userService.findByUsername(username);
-	
-			} catch (NullPointerException e) {
-				user = new User("Default", "default", "Default@default.def", 0, new HashSet<Role>(Arrays.asList(new Role(3, "USER"))), null);
-			}
+		try {
+			String username = SecurityContextHolder.getContext().getAuthentication().getName();
+			user = userService.findByUsername(username);
+		} catch (NullPointerException e) {
+			user = new User("Default", "default", "Default@default.def", 0, new HashSet<Role>(Arrays.asList(new Role(3, "USER"))), null);
 		}
-		
 		return user;
 	}
 	
