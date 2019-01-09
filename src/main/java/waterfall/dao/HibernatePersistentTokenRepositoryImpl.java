@@ -43,7 +43,10 @@ public class HibernatePersistentTokenRepositoryImpl extends AbstractDAO<String, 
 	@Override
 	public void removeUserTokens(String username) {
 		PersistentLoginToken token = findByUsername(username);
-		remove(token);
+		
+		if(token != null)
+			remove(token);
+	
 	}
 
 	@Override

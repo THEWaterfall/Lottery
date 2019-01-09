@@ -155,9 +155,9 @@ public class LotteryController {
 			return "LotteryPlayGroundView";
 		}
 		
-		if(user == null)
+		if(user == null) {
 			user = getUser();
-		
+		}
 		user.setCredits(player.getCredits());
 		
 		try {
@@ -185,6 +185,7 @@ public class LotteryController {
 		player.setCredits(user.getCredits() + totalWinningPrize);
 		user.setCredits(user.getCredits() + totalWinningPrize);
 		
+		System.out.println("useris "+user);
 		userService.update(user);
 		
 		return "LotteryResultsView";
@@ -209,11 +210,13 @@ public class LotteryController {
 	}
 	
 	private User getUser() {
-		try {
-			String username = SecurityContextHolder.getContext().getAuthentication().getName();
-			user = userService.findByUsername(username);
-		} catch (NullPointerException e) {
-			user = new User("Default", "default", "Default@default.def", 0, new HashSet<Role>(Arrays.asList(new Role(3, "USER"))), null);
+		if(user == null) {
+			try {
+				String username = SecurityContextHolder.getContext().getAuthentication().getName();
+				user = userService.findByUsername(username);
+			} catch (NullPointerException 	e) {
+				user = new User("Default", "default", "Default@default.def", 0, new HashSet<Role>(Arrays.asList(new Role(3, "USER"))), null);
+			}
 		}
 		return user;
 	}

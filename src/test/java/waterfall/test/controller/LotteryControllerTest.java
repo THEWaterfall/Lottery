@@ -85,7 +85,6 @@ public class LotteryControllerTest {
 	
 	@Test
 	public void showAddTicketView() throws Throwable {
-		//ReflectionTestUtils.setField(lotteryController, "player", player);
 		mockMvc.perform(get("/playground/ticket"))
 				.andExpect(status().isOk())
 				.andExpect(view().name("AddTicketView"));
@@ -171,7 +170,6 @@ public class LotteryControllerTest {
 	public void performPlayLotteryTest() throws Throwable {
 		Ticket ticket = new Ticket(true, true);
 		player.addTicket(ticket);
-	
 		mockMvc.perform(get("/playground/play"))
 				.andExpect(status().isOk())
 				.andExpect(view().name("LotteryResultsView"));
