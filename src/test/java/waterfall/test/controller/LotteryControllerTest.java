@@ -93,6 +93,9 @@ public class LotteryControllerTest {
 	@Test
 	public void AddTicketViewNotEnoughCreditsTest() throws Throwable {
 		player.setCredits(1);
+		user.setCredits(1);
+		userService.update(user);
+		
 		mockMvc.perform(get("/playground/ticket"))
 				.andExpect(status().isOk())
 				.andExpect(model().attribute("msg", "You can't buy a ticket. You don't have enough credits"))

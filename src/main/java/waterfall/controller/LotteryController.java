@@ -55,12 +55,7 @@ public class LotteryController {
 	
 	@RequestMapping(value = {"/", "/playground"}, method = RequestMethod.GET)
 	public String showLotteryPlayGround(ModelMap model) {
-		if(player == null || !player.getNickName().equals(getUser().getUsername())) {
-			player = new Player(getUser().getUsername(), getUser().getCredits());
-			user = null;
-		}
-		if(machine == null)
-			machine = new Machine();
+		playgroundInit();
 		
 		return "LotteryPlayGroundView";
 	}
@@ -185,7 +180,6 @@ public class LotteryController {
 		player.setCredits(user.getCredits() + totalWinningPrize);
 		user.setCredits(user.getCredits() + totalWinningPrize);
 		
-		System.out.println("useris "+user);
 		userService.update(user);
 		
 		return "LotteryResultsView";
@@ -206,19 +200,24 @@ public class LotteryController {
 	
 	@ModelAttribute("player")
 	private Player getPlayer() {
+		if(user != null) {
+			if(user.getCredits() != userService.findById(user.getId()).getCredits()) {
+				player.setCredits(userService.findById(user.getId()).getCredits());
+			}
+		}
+		
 		return player;
 	}
 	
 	private User getUser() {
-		if(user == null) {
-			try {
-				String username = SecurityContextHolder.getContext().getAuthentication().getName();
-				user = userService.findByUsername(username);
-			} catch (NullPointerException 	e) {
-				user = new User("Default", "default", "Default@default.def", 0, new HashSet<Role>(Arrays.asList(new Role(3, "USER"))), null);
-			}
+		User foundUser = null;
+		try {
+			String username = SecurityContextHolder.getContext().getAuthentication().getName();
+			foundUser = userService.findByUsername(username);
+		} catch (NullPointerException e) {
+			foundUser = new User(1, "Default", "default", "Default@default.def", 0, new HashSet<Role>(Arrays.asList(new Role(3, "USER"))), null);
 		}
-		return user;
+		return foundUser;
 	}
 	
 	private List<Integer> getWhiteBalls() {
@@ -235,5 +234,16 @@ public class LotteryController {
 			redBalls.add(i);
 		
 		return redBalls;
+	}
+	
+	public void playgroundInit() {
+		if(player == null || user == null || !player.getNickName().equals(getUser().getUsername())) {
+			user = getUser();
+			player = new Player(user.getUsername(), user.getCredits());
+		}
+		
+		if(machine == null)
+			machine = new Machine();
+		
 	}
 }

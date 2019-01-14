@@ -35,9 +35,15 @@ public class HibernatePersistentTokenRepositoryImpl extends AbstractDAO<String, 
 
 	@Override
 	public PersistentRememberMeToken getTokenForSeries(String seriesId) {
-		PersistentLoginToken token = findById(seriesId);
-		return new PersistentRememberMeToken(token.getUsername(), token.getSeries(),
-				token.getToken(), token.getLastUsed());
+		try {
+			PersistentLoginToken token = findById(seriesId);
+			return new PersistentRememberMeToken(token.getUsername(), token.getSeries(),
+					token.getToken(), token.getLastUsed());
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 	@Override
