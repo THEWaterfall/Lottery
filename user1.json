@@ -1,0 +1,13 @@
+{
+  "id" : 1,
+  "username" : "User",
+  "password" : "$2a$10$3WEqq4g.zQU3PIt/gwR1cOGejoTU2MtUpH5bS/XjlNRk0149Jw8bu",
+  "email" : "User@user.com",
+  "credits" : 2000,
+  "roles" : [ {
+    "id" : 1,
+    "type" : "USER"
+  } ],
+  "enabled" : false,
+  "profile" : null
+}

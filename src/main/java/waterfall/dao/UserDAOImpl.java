@@ -34,8 +34,8 @@ public class UserDAOImpl extends AbstractDAO<Integer, User> implements UserDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> findAllDisabled() {
-		Query<User> query = getSession().createQuery("SELECT u FROM User u LEFT JOIN VerificationToken vt ON u.id = vt.user.id WHERE vt.id IS NULL AND u.enabled = 0");
+	public List<User> findAllDisabled() { // looks terrible
+		Query<User> query = getSession().createQuery("SELECT u FROM User u LEFT JOIN VerificationToken vt ON u.id = vt.user.id LEFT JOIN PasswordResetToken prt ON u.id = prt.user.id WHERE vt.id IS NULL AND prt.id is NULL AND u.enabled = 0");
 		List<User> users = query.list();
 	
 		return users;

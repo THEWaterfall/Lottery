@@ -32,6 +32,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
+			.antMatchers("/password/update/**").hasRole("CHANGE_PASSWORD_PRIVILEGE")
 			.antMatchers("/", "/playground").hasAnyRole("ROOT", "MODER", "USER")
 			.antMatchers("/users/**").hasAnyRole("ROOT", "MODER")
 		.and()

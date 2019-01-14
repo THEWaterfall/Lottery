@@ -40,7 +40,7 @@
 					</div>
 				</div>
 				
-				<div class="form-grpup">
+				<div class="form-group">
 					<div class="form-check">
 					  <input class="form-check-input" name="remember-me" type="checkbox">
 					  <label class="form-check-label">Remember me</label>
@@ -50,8 +50,13 @@
 				<div class="form-group">
 					<input class="btn btn-block btn-primary" name="loginBtn" type="submit" value="Login" />
 				</div>
-				<div class="form-group">
-					<a class="btn btn-block btn-primary" href="<c:url value="/register" />">Register</a>
+				<div class="row">
+					<div class="form-group col-md-6">
+						<a class="btn btn-block btn-primary" href="<c:url value="/register" />">Register</a>
+					</div>
+					<div class="col-md-6 text-center">
+						<a class="text-secondary" style="line-height: 38px" href="<c:url value='/password/reset'/>">Forgot password?</a>
+					</div>
 				</div>
 			</form:form>
 		</div>

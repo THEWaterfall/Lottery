@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import waterfall.service.PasswordResetTokenService;
 import waterfall.service.VerificationTokenService;
 
 @Component
@@ -19,6 +20,9 @@ public class TokensPurgeTask {
 	@Autowired
 	private VerificationTokenService tokenService;
 	
+	@Autowired
+	private PasswordResetTokenService passwordResetTokenService;
+	
 	@Scheduled(cron = "${purge.token.cron}")
 	public void purgeExpiredTokens() {
 		logger.debug("Processing tokens purging");
@@ -27,5 +31,6 @@ public class TokensPurgeTask {
 		Date now = calendar.getTime();
 		
 		tokenService.removeExpiredSince(now);
+		passwordResetTokenService.removeExpiredSince(now);
 	}
 }
