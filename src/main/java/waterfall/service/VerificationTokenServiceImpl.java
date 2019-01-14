@@ -1,6 +1,7 @@
 package waterfall.service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -19,9 +20,11 @@ public class VerificationTokenServiceImpl implements VerificationTokenService {
 	private VerificationTokenDAO tokenDAO;
 	
 	@Override
-	public void createVerificationToken(User user, String token) {
+	public VerificationToken createVerificationToken(User user, String token) {
 		VerificationToken verificationToken = new VerificationToken(user, token);
 		tokenDAO.save(verificationToken);
+		
+		return verificationToken;
 	}
 
 	@Override
@@ -48,6 +51,21 @@ public class VerificationTokenServiceImpl implements VerificationTokenService {
 	@Override
 	public void removeExpiredSince(Date since) {
 		tokenDAO.removeExpiredSince(since);
+	}
+
+	@Override
+	public void save(VerificationToken token) {
+		tokenDAO.save(token);
+	}
+
+	@Override
+	public void update(VerificationToken token) {
+		tokenDAO.update(token);		
+	}
+
+	@Override
+	public List<VerificationToken> findAll() {
+		return tokenDAO.findAll();
 	}
 
 }

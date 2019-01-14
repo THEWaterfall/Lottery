@@ -30,7 +30,7 @@ public class VerificationToken {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	public static final int EXPIRATION = 30;
+	public static final int EXPIRATION = 60 * 24;
 
 	public VerificationToken() {
 		this.expiryDate = calculateExpiryDate(EXPIRATION);

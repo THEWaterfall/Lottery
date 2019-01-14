@@ -37,7 +37,7 @@
 				
 				
 				<form:input type="hidden" path="credits" value="0"/>
-				<form:input type="hidden" path="roles" value="4"/>
+				<form:input type="hidden" path="roles" value="3"/>
 
 				<hr/>
 				<div class="form-group row">
