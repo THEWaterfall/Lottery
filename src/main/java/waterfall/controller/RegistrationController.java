@@ -1,5 +1,6 @@
 package waterfall.controller;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -10,6 +11,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,10 +28,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.WebRequest;
 
 import waterfall.config.events.OnRegistrationEvent;
 import waterfall.model.PasswordResetToken;
+import waterfall.model.ReCaptchaResponse;
 import waterfall.model.Role;
 import waterfall.model.User;
 import waterfall.model.VerificationToken;
@@ -38,6 +43,9 @@ import waterfall.service.VerificationTokenService;
 
 @Controller
 public class RegistrationController {
+	
+	@Autowired
+	private Environment environment;
 	
 	@Autowired
 	private ApplicationEventPublisher eventPublisher;
@@ -52,23 +60,35 @@ public class RegistrationController {
 	private PasswordResetTokenService passwordResetTokenService;
 	
 	@Autowired
+	private RestTemplate restTemplate;
+	
+	@Autowired
 	private JavaMailSender mailSender;
 	
 	@RequestMapping(value = {"/register"}, method = RequestMethod.GET)
 	public String showRegistration(ModelMap model) {
 		User user = new User();
 		model.addAttribute("user", user);
+		model.addAttribute("sitekey", environment.getProperty("recaptcha.sitekey"));
 		
 		return "RegistrationView";
 	}
 	
 	@RequestMapping(value = {"/register"}, method = RequestMethod.POST)
 	public String registration(ModelMap model, @Valid @ModelAttribute("user") User user, BindingResult result,  WebRequest request) {
+		String captchaResponse = request.getParameter("g-recaptcha-response");
+		
+		if(!processCaptcha(captchaResponse)) {
+			String captchaError = "Error captcha";
+			model.addAttribute(captchaError);
+			return "RegistrationView";
+		}
+		
 		if(!userService.isEmailUnique(user)) {
 			FieldError fieldError = new FieldError("user", "email", "Email is already taken");
 			result.addError(fieldError);
 		}
-		
+		 
 		if(!userService.isUsernameUnique(user)) {
 			FieldError fieldError = new FieldError("user", "username", "username is already taken");
 			result.addError(fieldError);
@@ -221,9 +241,10 @@ public class RegistrationController {
 		email.setSubject(subject);
 		email.setText(body);
 		email.setTo(user.getEmail());
+		
 		return email;
 	}
-	
+
 	private void authWithoutPassword(User user){
 	    List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 	    
@@ -232,6 +253,21 @@ public class RegistrationController {
 
 	    Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), null, authorities);
 	    SecurityContextHolder.getContext().setAuthentication(authentication);
+	}
+	
+	private boolean processCaptcha(String response) {
+		if (response == null)
+			return false;
+		
+		String secretkey = environment.getProperty("recaptcha.secretkey");
+		URI verifyUri = URI.create(String.format(
+		          "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s", secretkey, response));
+		ReCaptchaResponse captcha = restTemplate.exchange(verifyUri, HttpMethod.POST, null, ReCaptchaResponse.class).getBody();
+		
+		if(!captcha.isSuccess())
+			return false;
+		
+		return true;
 	}
 	
 }

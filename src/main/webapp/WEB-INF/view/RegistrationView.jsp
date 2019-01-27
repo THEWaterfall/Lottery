@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value='/static/css/bootstrap.css'/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value='/static/css/styles.css'/>">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 	<div class="container">
@@ -80,17 +81,20 @@
 					</div>
 				</div>
 				
-				<div class="form-group row">
+				<div class="row">
 					<div class="col-md-2">
 						<input class="btn btn-block btn-success" type="submit" value="Register" />
+						<a class="btn btn-sm btn-block btn-danger" href="<c:url value='/users'/>">Cancel</a>
+					</div>
+				
+					<div class="col-md-10">
+						<div class="g-recaptcha" data-sitekey="${sitekey}"></div>
+						<c:if test="${captchaError != null}">
+							Captcha error
+						</c:if>
 					</div>
 				</div>
 				
-				<div class="form-group row">
-					<div class="col-md-2">
-						<a class="btn btn-block btn-danger" href="<c:url value='/users'/>">Cancel</a>
-					</div>
-				</div>
 			</form:form>
 		</div>
 	</div>
