@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 import waterfall.service.LoginAttemptsService;
 
 @Component
-public class LogginAttemptsPurgeTask {
+public class LoginAttemptsPurgeTask {
 
-	private static final Logger logger = LoggerFactory.getLogger(LogginAttemptsPurgeTask.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoginAttemptsPurgeTask.class);
 	
 	@Autowired
 	private LoginAttemptsService loginAttemptsService;

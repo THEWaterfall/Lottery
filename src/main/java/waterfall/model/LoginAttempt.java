@@ -5,13 +5,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="login_attempt")
 public class LoginAttempt {
 	
-	@Column(name="key")
+	@Id @Column(name="key")
 	private String key;
 	
 	@Column(name="attempts")

@@ -22,7 +22,9 @@ public class LoginAttemptsServiceImpl implements LoginAttemptsService {
 	@Override
 	public void loginSucceeded(String key) {
 		LoginAttempt loginAttempt = loginAttemptsDAO.findById(key);
-		loginAttemptsDAO.remove(loginAttempt);
+		
+		if (loginAttempt != null) 
+			loginAttemptsDAO.remove(loginAttempt);
 	}
 
 	@Override
