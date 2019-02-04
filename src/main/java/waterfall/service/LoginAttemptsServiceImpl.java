@@ -43,7 +43,10 @@ public class LoginAttemptsServiceImpl implements LoginAttemptsService {
 	@Override
 	public boolean isBlocked(String key) {
 		LoginAttempt loginAttempt = loginAttemptsDAO.findById(key);
-		return loginAttempt.getAttempts() >= MAX_ATTEMPTS;
+		if(loginAttempt == null)
+			return false;
+		else
+			return loginAttempt.getAttempts() >= MAX_ATTEMPTS;
 	}
 
 	@Override

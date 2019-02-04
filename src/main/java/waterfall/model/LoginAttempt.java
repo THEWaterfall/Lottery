@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(name="login_attempt")
 public class LoginAttempt {
 	
-	@Id @Column(name="key")
+	@Id @Column(name="ipkey")
 	private String key;
 	
 	@Column(name="attempts")
